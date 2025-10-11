@@ -30,12 +30,25 @@ object-oriented projects and integrated information systems.
 
 ---
 
-## Installation and Setup
-1. Clone the repository:
-```bash
-git clone https://github.com/your-team-repo.git
-cd your-team-repo
+## **Function Library Overview and Organization**
 
+| Category            | Description                          | Example Functions                                       |
+| ------------------- | ------------------------------------ | ------------------------------------------------------- |
+| **Validation**      | Ensure data consistency and quality  | `validate_rating()`, `validate_review_data()`           |
+| **Cleaning**        | Prepare review text for analysis     | `clean_review_text()`, `remove_stopwords()`             |
+| **Analysis**        | Compute statistics and metrics       | `calculate_average_rating()`, `summarize_reviews()`     |
+| **Data Management** | Import/export and transform datasets | `export_reviews_to_csv()`, `import_reviews_from_json()` |
+| **Recommendation**  | Suggest similar media titles         | `recommend_similar_titles()`                            |
+
+## **Usage Examples for Key Functions**
+
+### 🧹 Clean Review Text
+```python
+from src.media_utils import clean_review_text
+
+text = "Amazing show!!! <3 #mustwatch"
+print(clean_review_text(text))
+# Output: "amazing show mustwatch"
 
 
 
