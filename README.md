@@ -40,37 +40,50 @@ object-oriented projects and integrated information systems.
 | **Data Management** | Import/export and transform datasets | `export_reviews_to_csv()`, `import_reviews_from_json()` |
 | **Recommendation**  | Suggest similar media titles         | `recommend_similar_titles()`                            |
 
-## **Usage Examples for Key Functions**
 
-### 🧹 Clean Review Text
-```python
-from src.media_utils import clean_review_text
+## **Contribution Guidelines for Team Members**
 
-text = "Amazing show!!! <3 #mustwatch"
-print(clean_review_text(text))
-# Output: "amazing show mustwatch"
+Our team worked together to create this function library by dividing tasks, sharing ideas, and reviewing each other's work. The goal was to make sure everyone contributed meaningfully and understood the code we built.
 
+---
 
+### **🧩 Team Collaboration**
+Each person was responsible for adding different functions to the main library while also helping with testing and reviewing.  
+We used GitHub to keep our work organized — everyone made updates in their own sections and checked in regularly with the group to make sure everything fit together smoothly.
 
+| **Team Member**   | **Main Responsibilities** |
+|--------------------|----------------------------|
+| **Lateef Ambali**  | Focused on function creation, writing documentation, and improving readability of the code. |
+| **Eliab Getachew** | Reviewed teammates’ code, helped refine algorithms, and worked on improving data accuracy. |
+| **Heaven Worku**   | Tested each function, fixed errors, and made sure the outputs were consistent. |
+| **Jolina Dang**    | Organized the GitHub repository and helped maintain all documentation and formatting. |
 
+---
 
+### **💬 Communication and Review Process**
+We communicated mainly through group chats and GitHub comments to give feedback and make improvements.  
+Before adding new code, each person explained what their function was supposed to do and asked for suggestions.  
+When someone made a mistake or their code didn’t run properly, we helped debug it together.  
 
+During peer reviews:
+- We checked that each function had proper docstrings and examples.  
+- We made sure every team member understood their own code and any AI-generated parts they used.  
+- We confirmed that all the functions worked well together and didn’t overlap.
 
+---
 
+### **🧠 Documentation and Testing**
+We kept all code and notes up to date in the `docs/` folder so anyone could easily understand what each function does.  
+Each person tested their own functions and then another teammate’s functions to make sure results were accurate.  
+We also made small example scripts in the `examples/` folder to show how our functions could be used in real situations.
 
+Documentation included:
+- **Function names and what they do**  
+- **Input and output examples**  
+- **Any errors or issues we fixed**  
+- **Notes on improvements after code review**
 
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 
 
