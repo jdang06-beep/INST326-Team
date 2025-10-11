@@ -1,13 +1,1 @@
-#Lateef
-# Most reviewed items
-# highlights the media items with the most reviews
-from collections import Counter
 
-reviews = [
-    {"title": "The Conjuring", "content": "Terrifying and well-directed.", "genre": "Horror", "rating": 4.7},
-    {"title": "Mission Impossible", "content": "High energy and intense action!", "genre": "Action", "rating": 4.3},
-    {"title": "Gone Girl", "content": "Dark, clever, and suspenseful.", "genre": "Thriller", "rating": 4.6},
-    {"title": "Insidious", "content": "Creepy atmosphere and great scares.", "genre": "Horror", "rating": 4.5},
-    {"title": "The Conjuring", "content": "Still gives me chills!", "genre": "Horror", "rating": 4.8},
-    {"title": "Gone Girl", "content": "Amazing plot twist!", "genre": "Thriller", "rating": 4.7},
-]
