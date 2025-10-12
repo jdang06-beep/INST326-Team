@@ -82,8 +82,65 @@ Documentation included:
 - **Input and output examples**  
 - **Any errors or issues we fixed**  
 - **Notes on improvements after code review**
-
 ---
+## **Contribution Guidelines for Team Members**
+
+- **Collaboration:** Everyone on the team should take part in building, testing, and improving the functions. We all share responsibility for making sure the library works smoothly.  
+- **Commit Messages:** When pushing changes, write clear and short messages (for example: `add: new rating validation function` or `fix: incorrect average calculation`).  
+- **Coding Standards:** Follow **PEP 8** style rules to keep our code clean and easy to read. Use meaningful variable names and add helpful comments when needed.  
+- **Testing Requirements:** Every new function should come with at least one test to make sure it runs correctly and doesn’t break anything else.  
+- **Code Review:**  
+  - Each pull request should be reviewed by at least one teammate before merging.  
+  - Give helpful and respectful feedback focused on clarity and function performance.  
+- **Documentation:** Whenever a function is added or updated, make sure to update the docstrings and this README file if needed.  
+- **Communication:** Use our group chat or GitHub issues to stay in touch, share progress, and avoid working on the same part of the project at the same time.  
+- **Respect and Accountability:** Everyone’s ideas and work matter. Be respectful, meet deadlines, and make sure everyone contributes fairly to the final product.  
+---
+## **Usage Examples for Key Functions**
+
+```python
+from media_utils import (
+    validate_rating,
+    calculate_average_rating,
+    filter_by_tag,
+    anonymize_reviewer,
+    export_reviews_to_csv,
+    recommend_similar_titles
+)
+
+# **Validate a review rating**
+print(validate_rating(4.5))  # Output: True
+
+# **Compute average rating from a list of reviews**
+ratings = [5, 4, 3, 4, 5]
+print(calculate_average_rating(ratings))  # Output: 4.2
+
+# **Filter reviews by tag**
+reviews = [
+    {"title": "Inception", "tags": ["Sci-Fi", "Action"]},
+    {"title": "Titanic", "tags": ["Romance", "Drama"]}
+]
+filtered = filter_by_tag(reviews, "Sci-Fi")
+print(filtered)  # Returns reviews matching "Sci-Fi"
+
+# **Anonymize reviewer names**
+review_data = [{"reviewer": "John Smith", "rating": 5, "text": "Great movie!"}]
+anon_reviews = anonymize_reviewer(review_data)
+print(anon_reviews)
+
+# **Export reviews to CSV file**
+export_reviews_to_csv(review_data, "output/reviews.csv")
+
+# **Recommend similar titles**
+database = [
+    {"title": "Inception", "tags": ["Sci-Fi", "Thriller"]},
+    {"title": "Interstellar", "tags": ["Sci-Fi", "Drama"]},
+    {"title": "Titanic", "tags": ["Romance", "Drama"]}
+]
+recommendations = recommend_similar_titles("Inception", database)
+print(recommendations)  # Expected output: ["Interstellar"]
+---
+
 
 
 
