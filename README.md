@@ -77,6 +77,8 @@ We kept all code and notes up to date in the `docs/` folder so anyone could easi
 Each person tested their own functions and then another teammate’s functions to make sure results were accurate.  
 We also made small example scripts in the `examples/` folder to show how our functions could be used in real situations.
 
+## UPDATED DOCUMENTATION PROJECT 2 
+For this portion of the project, our team focused on transforming our Project 1 function library into an object-oriented system by designing and implementing core classes. We successfully created the MediaItem class, along with supporting classes like Reviewer, Review, Catalog, and RecommendationEngine, each with proper encapsulation, validation, and documentation. The team collaborated using feature branches, pull requests, and peer reviews to ensure code quality and maintainability. Integration with our existing Project 1 functions allowed methods like title normalization, similarity computation, and tag-based recommendations to work seamlessly. Overall, this phase strengthened our understanding of OOP principles and set a solid foundation for future subclassing and polymorphism in Project 3.
 Documentation included:
 - **Function names and what they do**  
 - **Input and output examples**  
