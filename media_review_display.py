@@ -1,3 +1,7 @@
+"""
+Class for displaying and managing media reviews, including validation, average rating updates, and formatted output.
+"""
+
 feature/media-review-display-class.py
 class MediaReviewDisplay:
 
