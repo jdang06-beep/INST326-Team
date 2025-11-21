@@ -1,0 +1,194 @@
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           ABSTRACT BASE LAYER                               │
+│                     (Defines Interface Contracts)                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌────────────────────────────────────────┐    ┌──────────────────────────┐ │
+│  │         AbstractMediaItem              │    │   AbstractReviewContainer│ │
+│  ├────────────────────────────────────────┤    ├──────────────────────────┤ │
+│  │ + item_id                              │    │ + container_id            │ │
+│  │ + title, creator, genre, release_year  │    │ + name, description       │ │
+│  │ + reviews []                           │    │ + media_items []          │ │
+│  │                                        │    │                           │ │
+│  │ @abstractmethod                        │    │ @abstractmethod           │ │
+│  │ + get_media_type()                     │    │ + add_item()              │ │
+│  │ + get_default_review_scale()           │    │ + remove_item()           │ │
+│  │ + get_summary()                         │    │ + get_items()             │ │
+│  │ + calculate_engagement_score()         │    │ + get_container_type()     │ │
+│  └────────────────────────────────────────┘    └──────────────────────────┘ │
+│                     ▲                               ▲                       │
+│                     │ inherits                      │ inherits              │
+└─────────────────────┼───────────────────────────────┼───────────────────────┘
+                      │                               │
+┌─────────────────────┼───────────────────────────────┼───────────────────────┐
+│                     │    CONCRETE IMPLEMENTATION LAYER                     │
+│                     │        (Inheritance & Polymorphism)                  │
+├─────────────────────┴───────────────────────────────┴───────────────────────┤
+│                                                                             │
+│   ┌──────────────────────┐   ┌───────────────────────┐   ┌────────────────┐ │
+│   │        Book          │   │         Film           │   │ AudioRecording │ │
+│   ├──────────────────────┤   ├───────────────────────┤   ├────────────────┤ │
+│   │ Media Type: "Book"   │   │ Media Type: "Film"     │   │ Type: "Audio"  │ │
+│   │ Review Scale: 1–5    │   │ Review Scale: 1–10     │   │ Scale: 1–7     │ │
+│   │ Summary: Author      │   │ Summary: Director      │   │ Summary: Artist│ │
+│   │ Engagement Score:    │   │ Engagement Score:      │   │ Engagement:    │ │
+│   │   reviews × 1.2      │   │   reviews × 2.5        │   │   reviews × 0.9│ │
+│   └──────────────────────┘   └───────────────────────┘   └────────────────┘ │
+│                                                                             │
+│   ┌──────────────────────────┐      ┌─────────────────────────────────┐      │
+│   │    FavoritesContainer    │      │       WatchlistContainer        │      │
+│   ├──────────────────────────┤      ├─────────────────────────────────┤      │
+│   │ No duplicate items       │      │ Allows duplicate items          │      │
+│   │ get_container_type():    │      │ get_container_type():           │      │
+│   │    → "Favorites"         │      │    → "Watchlist"                │      │
+│   └──────────────────────────┘      └─────────────────────────────────┘      │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                      │
+                                      │ used by
+                                      ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                             COMPOSITION LAYER                                │
+│                        (System Coordination Layer)                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │                           ReviewContainer                            │   │
+│  ├─────────────────────────────────────────────────────────────────────┤   │
+│  │ + media_items []  ◄────────────── HAS-MANY media items               │   │
+│  │                                                                       │   │
+│  │ + add_item(media)                                                    │   │
+│  │ + remove_item(media)                                                 │   │
+│  │ + get_items()                                                        │   │
+│  │ + get_container_type()                                               │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                                                                             │
+│  Composition Examples:                                                      │
+│   • FavoritesContainer HAS-MANY Book/Film/AudioRecording items              │
+│   • WatchlistContainer HAS-MANY media items                                │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+Key Relationships
+INHERITANCE (is-a)
+
+Book IS-A MediaItem
+
+Film IS-A MediaItem
+
+AudioRecording IS-A MediaItem
+
+FavoritesContainer IS-A ReviewContainer
+
+WatchlistContainer IS-A ReviewContainer
+
+COMPOSITION (has-a / has-many)
+
+FavoritesContainer HAS-MANY media items
+
+WatchlistContainer HAS-MANY media items
+
+MediaItem HAS-MANY reviews
+
+POLYMORPHISM (same method, different behavior)
+Media Item Polymorphism
+
+All media types implement get_media_type() differently:
+
+Book → "Book"
+
+Film → "Film"
+
+AudioRecording → "Audio Recording"
+
+All media types implement get_default_review_scale() differently:
+
+Book → "1–5"
+
+Film → "1–10"
+
+AudioRecording → "1–7"
+
+All media types implement calculate_engagement_score() differently:
+
+Book → reviews × 1.2
+
+Film → reviews × 2.5
+
+AudioRecording → reviews × 0.9
+
+Container Polymorphism
+
+add_item() behavior varies by container type:
+
+FavoritesContainer → no duplicates allowed
+
+WatchlistContainer → duplicates allowed
+
+get_container_type() varies by subclass:
+
+FavoritesContainer → "Favorites"
+
+WatchlistContainer → "Watchlist"
+
+Polymorphism allows the system to treat all items as AbstractMediaItem or AbstractReviewContainer while each subclass provides its own specialized behavior.
+
+Data Flow Example
+1. User creates containers
+   └─→ favorites = FavoritesContainer(...)
+   └─→ watchlist = WatchlistContainer(...)
+
+2. User creates media items
+   └─→ book = Book("1984")
+   └─→ film = Film("Inception")
+   └─→ audio = AudioRecording("Kind of Blue")
+
+3. User adds media items to containers
+   └─→ favorites.add_item(book)
+   └─→ watchlist.add_item(film)
+       └─→ (duplicates allowed in watchlist)
+
+4. System evaluates engagement
+   └─→ book.calculate_engagement_score()
+   └─→ film.calculate_engagement_score()
+
+5. User retrieves items from containers
+   └─→ favorites.get_items()
+   └─→ watchlist.get_items()
+
+6. Polymorphism in action
+   └─→ Each media item responds differently to:
+         • get_media_type()
+         • get_default_review_scale()
+         • calculate_engagement_score()
+   └─→ Each container type responds differently to:
+         • add_item()
+         • get_container_type()
+
+Abstract Layer Benefits
+
+✓ Enforces consistent interfaces for all media items and containers
+✓ Prevents instantiation of incomplete classes through abstract methods
+✓ Ensures clear behavioral contracts that all subclasses must follow
+✓ Provides type safety by using the ABC module to define required methods
+
+Concrete Layer Benefits
+
+✓ Code reuse through shared initialization and methods inherited from abstract classes
+✓ Specialized behavior per media type (Book, Film, AudioRecording)
+✓ Polymorphic method calls allow flexible, type-specific responses
+✓ Easy to extend the system with new media types or new container types
+
+Composition Layer Benefits
+
+✓ Containers maintain collections of media items using natural has-a relationships
+✓ Media items maintain lists of reviews without forcing inheritance
+✓ Clear separation of responsibilities between items, containers, and user actions
+✓ Enables scalable system coordination while keeping components decoupled
+
+| Pattern | Where Used | Why |
+|--------|------------|-----|
+| **Abstract Base Class** | AbstractMediaItem, AbstractReviewContainer | Enforce interface contracts |
+| **Inheritance** | Book/Film/AudioRecording; FavoritesContainer/WatchlistContainer | Code reuse + polymorphism |
+| **Polymorphism** | get_media_type(), get_default_review_scale(), calculate_engagement_score(), add_item() | Type-specific behavior |
+| **Composition** | FavoritesContainer → media_items[], WatchlistContainer → media_items[]; MediaItem → reviews[] | Flexible relationships |
+| **Template Method** | Abstract methods define required subclass implementations | Define algorithm structure |
