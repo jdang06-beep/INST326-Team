@@ -5,6 +5,7 @@ Tests inheritance, abstract base classes, polymorphism, and composition.
 """
 
 import unittest
+
 from reviewable_items import (
     ReviewableItem,
     LibraryItem,
@@ -19,6 +20,8 @@ from media_item_classes import (
 )
 from abc import ABC
 
+from media_review_manager import MediaItem, Review, User, MediaReviewDisplay
+from base_classes import AbstractMediaItem, AbstractReviewContainer
 
 class TestReviewableInheritance(unittest.TestCase):
     """Test inheritance for ReviewableItem hierarchy."""
@@ -127,6 +130,50 @@ class TestAbstractMediaItemBehavior(unittest.TestCase):
         self.assertEqual(film.calculate_engagement_score(), 3 * 2.5)
         self.assertEqual(audio.calculate_engagement_score(), 1 * 0.9)
 
+class TestAbstractClassEnforcement(unittest.TestCase):
+    # test that abstract base classes cannot be instantiated
+
+    def test_abstract_media_item_instantiation(self):
+        with self.assertRaises(TypeError):
+            AbstractMediaItem("x1", "Title", "Creator", "Genre", 2025)
+
+    def test_abstract_review_container_instantiation(self):
+        with self.assertRaises(TypeError):
+            AbstractReviewContainer("c1", "Container Name")
+        
+
+class TestCompositionRelationships(unittest.TestCase):
+    # test composition relationships in the Media Review system
+
+    def setUp(self):
+        self.media_item = MediaItem("m1", "Test Movie")
+        self.user = User("TestUser")
+        self.review1 = Review("m1", self.user.username, 5, "Great!")
+        self.review2 = Review("m1", self.user.username, 4, "Good movie.")
+        self.display = MediaReviewDisplay(self.media_item)
+
+    def test_media_item_has_reviews(self):
+        self.assertEqual(len(self.media_item._reviews), 0)
+        self.media_item.add_review(self.review1)
+        self.assertIn(self.review1, self.media_item._reviews)
+        self.media_item.add_review(self.review2)
+        self.assertEqual(len(self.media_item._reviews), 2)
+        self.assertIn(self.review2, self.media_item._reviews)
+
+    def test_user_has_saved_reviews(self):
+        self.assertEqual(len(self.user.saved_reviews), 0)
+        self.user.save_review(self.review1)
+        self.assertIn(self.review1, self.user.saved_reviews)
+        self.user.save_review(self.review2)
+        self.assertEqual(len(self.user.saved_reviews), 2)
+
+    def test_display_has_media_item_and_reviews(self):
+        self.media_item.add_review(self.review1)
+        self.media_item.add_review(self.review2)
+        display = MediaReviewDisplay(self.media_item)
+        self.assertIs(display.media_item, self.media_item)
+        self.assertListEqual(display.display_reviews, self.media_item._reviews)
+        self.assertEqual(len(display.display_reviews), 2)
 
 if __name__ == "__main__":
     unittest.main()
