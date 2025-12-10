@@ -98,7 +98,7 @@ All tests are located in the `tests/` directory and are divided into:
 
 From the project root:
 
-```powershell
+powershell
 $env:PYTHONPATH = (Get-Location).Path
 python -m unittest discover -v tests
 ---
