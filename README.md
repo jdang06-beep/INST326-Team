@@ -143,7 +143,22 @@ recommendations = recommend_similar_titles("Inception", database)
 print(recommendations)  # Expected output: ["Interstellar"]
 ---
 
+## ✅ Running the Test Suite
 
+This project uses Python’s built-in `unittest` framework for all testing.
+All tests are located in the `tests/` directory and are divided into:
+
+- Unit Tests  
+- Integration Tests  
+- System Tests  
+
+### 🔹 Windows (PowerShell)
+
+From the project root:
+
+```powershell
+$env:PYTHONPATH = (Get-Location).Path
+python -m unittest discover -v tests
 
 
 
