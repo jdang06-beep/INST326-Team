@@ -1,4 +1,3 @@
-```markdown
 # TESTING DOCUMENTATION
 
 ## Testing Strategy
