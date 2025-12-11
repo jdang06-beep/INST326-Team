@@ -98,7 +98,7 @@ All tests are located in the `tests/` directory and are divided into:
 
 ### 🔹 Windows (PowerShell)
 
-From the project root:
+From the project root, run:
 
 ```powershell
 $env:PYTHONPATH = (Get-Location).Path
