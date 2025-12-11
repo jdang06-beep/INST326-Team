@@ -27,6 +27,8 @@ logic that determines user-facing behavior.
 
 ## How to Run the Test Suite
 
+From the project root directory, run:
+
 ### Windows (PowerShell)
 $env:PYTHONPATH = (Get-Location).Path
 python -m unittest discover -v tests
