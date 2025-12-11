@@ -141,8 +141,22 @@ database = [
 ]
 recommendations = recommend_similar_titles("Inception", database)
 print(recommendations)  # Expected output: ["Interstellar"]
+```
+
 ---
 
+## How to Run the Test Suite
+
+From the project root directory, run:
+
+### Windows (PowerShell)
+$env:PYTHONPATH = (Get-Location).Path
+python -m unittest discover -v tests
+
+### Mac / Linux (Terminal)
+PYTHONPATH=$(pwd) python3 -m unittest discover -v tests
+
+---
 
 
 
