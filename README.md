@@ -84,7 +84,29 @@ Documentation included:
 - **Input and output examples**  
 - **Any errors or issues we fixed**  
 - **Notes on improvements after code review**
+  
 ---
+
+## ✅ Running the Test Suite
+
+This project uses Python’s built-in `unittest` framework for all testing.
+All tests are located in the `tests/` directory and are divided into:
+
+- Unit Tests  
+- Integration Tests  
+- System Tests  
+
+### 🔹 Windows (PowerShell)
+
+From the project root, run:
+
+```powershell
+$env:PYTHONPATH = (Get-Location).Path
+python -m unittest discover -v tests
+```
+
+---
+
 ## **Contribution Guidelines for Team Members**
 
 - **Collaboration:** Everyone on the team should take part in building, testing, and improving the functions. We all share responsibility for making sure the library works smoothly.  
@@ -142,7 +164,6 @@ database = [
 recommendations = recommend_similar_titles("Inception", database)
 print(recommendations)  # Expected output: ["Interstellar"]
 ---
-
 
 
 
