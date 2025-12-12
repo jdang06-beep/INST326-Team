@@ -1,4 +1,5 @@
-media_system/media_item.py
+from typing import List, Dict, Any, Optional
+
 class MediaItem:
     """Represents a media item (movie, book, album, etc.)
 
@@ -99,9 +100,6 @@ class MediaItem:
 
     def __repr__(self):
         return f"MediaItem({self._item_id!r}, {self._title!r}, {self._media_type!r})"
-      git add media_system/media_system.py
-git commit -m "Add MediaItem class with validation, encapsulation, and Project 1 integration"
-git push origin feature/mediaitem-class
 
 """
 ---------------------------------------------------------------------------------------------------------------------------------
