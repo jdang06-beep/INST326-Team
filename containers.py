@@ -1,4 +1,4 @@
-lass FavoritesContainer(AbstractReviewContainer):
+class FavoritesContainer(AbstractReviewContainer):
     """Lst of favorite media items from the user."""
 
     def add_item(self, media_item):
