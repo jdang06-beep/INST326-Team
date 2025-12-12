@@ -1,4 +1,3 @@
-cattaloglibrary/thelibrarycatalog.yp
 class LibraryItem:
     def __init__(self, title, author, year, copies=1):
         self.title = title
@@ -85,6 +84,4 @@ items = [
 my_lib_2 = Library.from_list("Campus Library", items)
 print(my_lib_2.list_items())
 
-git add cattaloglibrary/cattaloglibrary.py
-git commit -m "Add UserItem class with validation, encapsulation, and Project 1 integration"
-git push origin feature/thelibrarycatalog-class
+
