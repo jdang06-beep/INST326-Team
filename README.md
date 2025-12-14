@@ -159,8 +159,73 @@ PYTHONPATH=$(pwd) python3 -m unittest discover -v tests
 ---
 
 
+#setup/instillation
+ Clone the repository:
+   git clone <REPO_URL>
+   cd <REPO_NAME>
 
+2. Install dependencies:
+   pip install -r requirements.txt
+   (This project primarily uses the Python standard library.)
 
+3. Run the application:
+   python -m src.main
 
+#System Usage Overview
+Through the use of an object-oriented approach, this application enables users to manage media assets and reviews.  In addition to creating media pieces and grouping them into containers, users may also contribute reviews, compute engagement scores, and save data between sessions. 
 
+# Typical Workflow
+1. Create media items (Book, Film, AudioRecording)
+2. Create containers (FavoritesContainer or WatchlistContainer)
+3. Add media items to containers
+4. Add reviews to media items
+5. View summaries and engagement scores
+6. Save system state to a file
+7. Load system state in a later session
+8. Import or export data using CSV or JSON
+
+# Architecture Overview
+Through the use of an object-oriented approach, this application enables users to manage media assets and reviews.  In addition to creating media pieces and grouping them into containers, users may also contribute reviews, compute engagement scores, and save data between sessions.
+
+# Architecture Layers
+1. Abstract Base Layer  
+   Defines required interfaces for media items and containers using abstract base classes.
+
+2. Concrete Implementation Layer  
+   Implements specific media types (Book, Film, AudioRecording) and container types
+   (FavoritesContainer, WatchlistContainer) using inheritance and polymorphism.
+
+3. Composition Layer  
+   Containers maintain collections of media items, and media items maintain collections
+   of reviews using has-a relationships.
+
+# Architecture Diagram
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           ABSTRACT BASE LAYER                               │
+│                     (Defines Interface Contracts)                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ AbstractMediaItem        AbstractReviewContainer                             │
+│ - get_media_type()      - add_item()                                         │
+│ - get_default_scale()   - remove_item()                                      │
+│ - calculate_engagement() - get_container_type()                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+          ▲                                   ▲
+          │                                   │
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     CONCRETE IMPLEMENTATION LAYER                            │
+│ Book   Film   AudioRecording   FavoritesContainer   WatchlistContainer       │
+└─────────────────────────────────────────────────────────────────────────────┘
+          │
+          ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           COMPOSITION LAYER                                  │
+│ Containers hold media items; media items hold reviews                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+# Data Persistence & I/O
+- System state is saved and loaded using JSON files
+- Media data can be imported from CSV or JSON formats
+- Reports and summaries can be exported to external files
+- File operations use context managers and exception handling
+- Imported data is validated before being added to the system
 
