@@ -229,3 +229,5 @@ Through the use of an object-oriented approach, this application enables users t
 - File operations use context managers and exception handling
 - Imported data is validated before being added to the system
 
+# Video Presentation 
+https://drive.google.com/file/d/1Dxoz9lRJPOK-Hi2gjiK35nZ-U37jEF5q/view?usp=sharing
